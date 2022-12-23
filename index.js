@@ -1,14 +1,22 @@
 //count buttons
 var numOfButtons = document.querySelectorAll(".drum").length;
 
-//add event listener to all 7 buttons:
+//detecting button press
 for (var i = 0; i < numOfButtons; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function() {
-
     var buttonInnerHTML = this.innerHTML;
-    
-//use switch statements to detect which button is clicked
-    switch(buttonInnerHTML) {
+
+    makeSound(buttonInnerHTML);
+        
+});
+}
+//detecting key strokes
+document.addEventListener("keydown", function(event) {
+    makeSound(event.key);
+});
+
+function makeSound (key) {
+    switch(key) {
             case "w":
                     var snare = new Audio("sounds/snare.mp3");
                     snare.play();
@@ -46,6 +54,4 @@ for (var i = 0; i < numOfButtons; i++) {
                 break;
             default: console.log(buttonInnerHTML);
         }
-        
-});
 }
