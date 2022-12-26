@@ -7,12 +7,13 @@ for (var i = 0; i < numOfButtons; i++) {
     var buttonInnerHTML = this.innerHTML;
 
     makeSound(buttonInnerHTML);
-        
+    buttonAnimation(buttonInnerHTML);
 });
 }
 //detecting key strokes
 document.addEventListener("keydown", function(event) {
     makeSound(event.key);
+    buttonAnimation(event.key);
 });
 
 function makeSound (key) {
@@ -54,4 +55,18 @@ function makeSound (key) {
                 break;
             default: console.log(buttonInnerHTML);
         }
+}
+
+//make the buttons highlighted when pressed or clicked
+function buttonAnimation(currentKey) {
+    console.log('buttonAnimation called with key: ' + currentKey);
+    console.log('currentKey: ' + currentKey)
+
+    var activeButton = document.querySelector("." + currentKey);
+
+    activeButton.classList.add("pressed");
+
+    setTimeout(function () {
+        activeButton.classList.remove("pressed");
+    }, 100);
 }
